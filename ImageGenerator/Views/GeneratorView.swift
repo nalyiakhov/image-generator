@@ -66,6 +66,7 @@ class GeneratorView: UIView {
         button.titleLabel?.font = .regular12
         button.setText(text: "favorite".localized(), kern: 1.2)
         button.tag = GeneratorTab.favorite.rawValue
+        button.accessibilityIdentifier = "favoritesButton"
         return button
     }()
 
@@ -78,6 +79,7 @@ class GeneratorView: UIView {
         view.font = .regular12
         view.placeholder = "enter_text".localized()
         view.autocorrectionType = .no
+        view.accessibilityIdentifier = "generateText"
 
         let paddingView = UIView(frame: CGRectMake(0, 0, 10, view.frame.height))
         view.leftView = paddingView
@@ -95,6 +97,7 @@ class GeneratorView: UIView {
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         button.setText(text: "generate".localized(), kern: 1.2)
         button.backgroundColor = UIColor.link
+        button.accessibilityIdentifier = "generateButton"
         return button
     }()
 
@@ -127,6 +130,7 @@ class GeneratorView: UIView {
         button.tintColor = .darkGray
         button.layer.cornerRadius = 22
         button.backgroundColor = .white.withAlphaComponent(0.5)
+        button.accessibilityIdentifier = "favoriteButton"
         return button
     }()
     
@@ -149,12 +153,13 @@ class GeneratorView: UIView {
         return view
     }()
     
-    var placeholderLabel: UILabel = {
+    var emptyLabel: UILabel = {
         var label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.regular14
         label.numberOfLines = 0
         label.text = "no_images".localized()
+        label.accessibilityIdentifier = "emptyLabel"
         return label
     }()
 
@@ -282,11 +287,11 @@ class GeneratorView: UIView {
         favoritesPlaceholderView.topAnchor.constraint(equalTo: favoritesHolder.topAnchor).isActive = true
         favoritesPlaceholderView.bottomAnchor.constraint(equalTo: favoritesHolder.bottomAnchor).isActive = true
         
-        favoritesPlaceholderView.addSubview(placeholderLabel)
+        favoritesPlaceholderView.addSubview(emptyLabel)
         
-        placeholderLabel.centerXAnchor.constraint(equalTo: favoritesPlaceholderView.centerXAnchor).isActive = true
-        placeholderLabel.centerYAnchor.constraint(equalTo: favoritesPlaceholderView.centerYAnchor).isActive = true
-        placeholderLabel.widthAnchor.constraint(lessThanOrEqualTo: favoritesPlaceholderView.widthAnchor, multiplier: 0.7).isActive = true
+        emptyLabel.centerXAnchor.constraint(equalTo: favoritesPlaceholderView.centerXAnchor).isActive = true
+        emptyLabel.centerYAnchor.constraint(equalTo: favoritesPlaceholderView.centerYAnchor).isActive = true
+        emptyLabel.widthAnchor.constraint(lessThanOrEqualTo: favoritesPlaceholderView.widthAnchor, multiplier: 0.7).isActive = true
     }
 }
 

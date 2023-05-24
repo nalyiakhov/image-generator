@@ -18,32 +18,31 @@ final class ImageGeneratorUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let generatorButton = app.buttons["Генератор изображений"]
+        let generatorButton = app.buttons.element(matching: XCUIElement.ElementType.button, identifier: "generatorButton")
         XCTAssertTrue(generatorButton.exists, "Unable to find Generator button")
         generatorButton.tap()
         
-        let generatorTextField = app.textFields["Введите запрос"]
+        let generatorTextField = app.textFields.element(matching: XCUIElement.ElementType.textField, identifier: "generateText")
         XCTAssertTrue(generatorTextField.exists, "Unable to find Query text field")
         generatorTextField.tap()
         generatorTextField.typeText("Test text")
         
-        let generateButton = app.buttons["Сгенерировать"]
+        let generateButton = app.buttons.element(matching: XCUIElement.ElementType.button, identifier: "generateButton")
         XCTAssertTrue(generateButton.exists, "Unable to find Generate button")
         generateButton.tap()
 
-        let generatedImagePredicate = NSPredicate(format: "identifier == 'generatedImage'")
-        let generatedImage = app.images.element(matching: generatedImagePredicate)
+        let generatedImage = app.images.element(matching: XCUIElement.ElementType.image, identifier: "generatedImage")
         XCTAssertTrue(generatedImage.waitForExistence(timeout: 5))
 
-        let favoriteButton = app.buttons["star"]
+        let favoriteButton = app.buttons.element(matching: XCUIElement.ElementType.button, identifier: "favoriteButton")
         XCTAssertTrue(favoriteButton.exists, "Unable to find Favorite button")
         favoriteButton.tap()
 
-        let favoritesTabButton = app.buttons["Избранное"]
+        let favoritesTabButton = app.buttons.element(matching: XCUIElement.ElementType.button, identifier: "favoritesButton")
         XCTAssertTrue(favoritesTabButton.exists, "Unable to find Favorites tab button")
         favoritesTabButton.tap()
         
-        let noImagesLabel = app.staticTexts["Нет избранных изображений"]
+        let noImagesLabel = app.staticTexts.element(matching: XCUIElement.ElementType.any, identifier: "emptyLabel")
         XCTAssertTrue(!noImagesLabel.exists, "Favorites is empty")
     }
 

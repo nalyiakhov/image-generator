@@ -32,6 +32,7 @@ class StartView: UIView {
         button.setTitle("generator".localized(), for: .normal)
         button.titleLabel?.font = UIFont.medium16
         button.setTitleColor(UIColor.text, for: .normal)
+        button.accessibilityIdentifier = "generatorButton"
         return button
     }()
 
